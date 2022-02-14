@@ -1,0 +1,22 @@
+#docker compose version
+version: "3" 
+
+
+services:
+  app:
+    build:
+        #current directory 
+      context: .
+    ports:
+        #port map
+      - "8000:8000"
+    volumes:
+        #gets our updates for our project into our docker container 
+        #means we don't need to restart the docker container as we change things
+      - ./app:/app
+
+      #used to run our application in docker container, use the > to allow multi lines
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
+    
+
